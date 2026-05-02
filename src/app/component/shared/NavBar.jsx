@@ -68,7 +68,7 @@ const NavBar = () => {
 
 
             <div className="navbar-end">
-                <a className="btn bg-[#EE8015] text-white text-lg" >Login</a>
+                <a className="btn bg-[#EE8015] text-white text-lg hover:bg-[#FEF0D6] hover:text-[#EE8015]" >Login</a>
             </div>
         </div>
     );

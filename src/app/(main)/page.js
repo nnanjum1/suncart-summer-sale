@@ -1,7 +1,10 @@
 import Image from "next/image";
+import Hero from "../component/Hero";
 
 export default function Home() {
   return (
-    <h2 className="text-red-700">Homepage</h2>
+    <div className="bg-[#FFFBEB] h-screen">
+      <Hero />
+    </div>
   );
 }
