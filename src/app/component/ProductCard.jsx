@@ -4,7 +4,7 @@ import { FaStar } from "react-icons/fa";
 
 export default function ProductCard({ product }) {
     return (
-        <div className="bg-white rounded-xl shadow-md hover:shadow-lg my-6 transition p-4">
+        <div className="bg-[#b4ffa2] rounded-xl shadow-md hover:shadow-lg my-6 transition p-4">
             <div className="w-full h-48 relative mb-3">
                 <Image
                     src={product.image}
@@ -19,7 +19,7 @@ export default function ProductCard({ product }) {
 
             <div className="flex items-center justify-between mt-1">
 
-                <span className="text-green-600 font-bold">
+                <span className="text-blue-900 font-bold">
                     BDT {product.price}
                 </span>
 
