@@ -9,9 +9,7 @@ export default function Footer() {
     return (
         <footer className="bg-[#FEF0D6] border-t border-slate-200 mt-auto">
 
-            <div className="container mx-auto px-6 py-10 
-                grid grid-cols-1 md:grid-cols-3 gap-8 
-                text-center md:text-left">
+            <div className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
 
 
                 <nav className="flex flex-col items-center md:items-start gap-2">
