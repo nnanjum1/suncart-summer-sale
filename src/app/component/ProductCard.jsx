@@ -30,10 +30,11 @@ export default function ProductCard({ product }) {
 
             </div>
 
-
-            <button className="mt-3 w-full btn text-white hover:bg-[#dd8842]  bg-[#ce6c1c]">
-                View Details
-            </button>
+            <Link href={`/products/${product.id}`}>
+                <button className="mt-3 w-full btn text-white hover:bg-[#dd8842] bg-[#ce6c1c]">
+                    View Details
+                </button>
+            </Link>
         </div>
     );
 }

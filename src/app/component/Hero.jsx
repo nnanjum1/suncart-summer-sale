@@ -49,7 +49,7 @@ export default function Hero() {
                     </p>
 
                     <Link
-                        href="/products"
+                        href={"/allproducts"}
                         className="bg-amber-600 text-white font-semibold px-8 py-3 rounded-xl hover:bg-amber-700 transition w-fit mx-auto md:mx-0 shadow-md"
                     >
                         View Products
