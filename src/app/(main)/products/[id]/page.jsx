@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ProductsPage = () => {
+const ProductsDetailsPage = () => {
     return (
         <div>ProductsPage</div>
     )
 }
 
-export default ProductsPage
+export default ProductsDetailsPage
