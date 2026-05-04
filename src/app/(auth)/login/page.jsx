@@ -2,25 +2,25 @@
 
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 
 const LoginPage = () => {
-
     const router = useRouter();
-    const searchParams = useSearchParams();
-
-    const redirectTo = searchParams.get("redirect") || "/";
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-
     const [isShowPassword, setIsShowPassword] = useState(false);
+    const [redirectTo, setRedirectTo] = useState("/");
 
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const redirect = params.get("redirect");
+        if (redirect) setRedirectTo(redirect);
+    }, []);
 
     const handleLoginFunc = async (data) => {
-
         const { data: res, error } = await authClient.signIn.email({
             email: data.email,
             password: data.password,
@@ -43,65 +43,49 @@ const LoginPage = () => {
         });
     };
 
-
-
     return (
         <div className="min-h-screen flex items-center justify-center bg-[#FFFBEB] p-4">
 
             <div className="w-full max-w-md bg-white shadow-xl rounded-2xl p-8 border border-orange-100">
 
-
                 <h2 className="text-3xl font-extrabold text-center text-orange-600 mb-6">
                     Login your Account
                 </h2>
 
-
                 <form className="space-y-4" onSubmit={handleSubmit(handleLoginFunc)}>
 
-
-                    <div>
-                        <input
-                            type="email"
-                            placeholder="Enter email"
-                            className="input input-bordered w-full focus:border-orange-500"
-                            {...register("email", { required: "Email is required" })}
-                        />
-                        {errors.email && (
-                            <p className="text-red-500 text-sm mt-1">
-                                {errors.email.message}
-                            </p>
-                        )}
-                    </div>
+                    <input
+                        type="email"
+                        placeholder="Enter email"
+                        className="input input-bordered w-full"
+                        {...register("email", { required: "Email is required" })}
+                    />
+                    {errors.email && <p className="text-red-500">{errors.email.message}</p>}
 
                     <div className="relative">
                         <input
                             type={isShowPassword ? "text" : "password"}
                             placeholder="Enter password"
-                            className="input input-bordered w-full focus:border-orange-500"
+                            className="input input-bordered w-full"
                             {...register("password", { required: "Password is required" })}
                         />
 
                         <span
-                            className="absolute right-3 top-3 cursor-pointer text-gray-500"
+                            className="absolute right-3 top-3 cursor-pointer"
                             onClick={() => setIsShowPassword(!isShowPassword)}
                         >
                             {isShowPassword ? <FaEyeSlash /> : <FaEye />}
                         </span>
 
                         {errors.password && (
-                            <p className="text-red-500 text-sm mt-1">
-                                {errors.password.message}
-                            </p>
+                            <p className="text-red-500">{errors.password.message}</p>
                         )}
                     </div>
 
-
-                    <button className="btn bg-orange-600 hover:bg-orange-700 text-white w-full font-bold">
+                    <button className="btn bg-orange-600 text-white w-full">
                         Login
                     </button>
-
                 </form>
-
 
                 <div className="my-6 flex items-center gap-2">
                     <div className="flex-1 h-px bg-gray-200"></div>
@@ -109,15 +93,13 @@ const LoginPage = () => {
                     <div className="flex-1 h-px bg-gray-200"></div>
                 </div>
 
-
                 <button
                     onClick={handleGoogleLogin}
-                    className="btn w-full bg-white border border-gray-300 hover:bg-gray-50 flex items-center gap-2 justify-center"
+                    className="btn w-full border flex items-center justify-center gap-2"
                 >
                     <FaGoogle className="text-red-500" />
                     Continue with Google
                 </button>
-
 
                 <p className="mt-5 text-center text-sm">
                     Don’t have an account?{" "}
