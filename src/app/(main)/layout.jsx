@@ -3,6 +3,7 @@ import NavBar from '../component/shared/NavBar'
 import Footer from '../component/shared/Footer'
 import Hero from '../component/Hero'
 import "animate.css";
+import { Toaster } from 'react-hot-toast';
 const MainLayout = ({ children }) => {
     return (
         <div>
@@ -10,7 +11,10 @@ const MainLayout = ({ children }) => {
             <NavBar />
 
             {children}
+
             <Footer />
+            <Toaster position="top-right" />
+
         </div>
     )
 }

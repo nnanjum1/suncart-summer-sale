@@ -7,43 +7,49 @@ import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 export default function Footer() {
     return (
-        <footer className="bg-[#FEF0D6] border-t border-slate-200 mt-auto">
+        <footer className="bg-[#FEF0D6] border-t border-slate-200 mt-auto w-full">
 
-            <div className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center text-center">
 
 
-                <nav className="flex flex-col items-center md:items-start gap-2">
+                <nav className="flex flex-col items-center gap-2">
                     <h6 className="footer-title text-slate-800 font-bold mb-2">Contact Us</h6>
 
-                    <p className="text-sm text-slate-600 flex items-center gap-2">
+                    <p className="text-sm text-slate-600 flex items-center justify-center gap-2">
                         <MdOutlineMail className="w-4 h-4 text-amber-600" />
                         support@suncart.com
                     </p>
 
-                    <p className="text-sm text-slate-600 flex items-center gap-2">
+                    <p className="text-sm text-slate-600 flex items-center justify-center gap-2">
                         <IoMdCall className="w-4 h-4 text-amber-600" />
                         +880 1234-567890
                     </p>
 
-                    <p className="text-sm text-slate-600 flex items-center gap-2">
+                    <p className="text-sm text-slate-600 flex items-center justify-center gap-2">
                         <CiLocationOn className="w-4 h-4 text-amber-600" />
                         Dhaka, Bangladesh
                     </p>
                 </nav>
 
 
-                <nav className="flex flex-col items-center md:items-start gap-2">
+                <nav className="flex flex-col items-center gap-2">
                     <h6 className="footer-title text-slate-800 font-bold mb-2">Connect</h6>
 
                     <div className="flex gap-4 text-2xl text-slate-700">
-                        <a className="hover:text-amber-600 transition"><FaFacebook /></a>
-                        <a className="hover:text-amber-600 transition"><FaInstagram /></a>
-                        <a className="hover:text-amber-600 transition"><FaLinkedin /></a>
+                        <a href="https://facebook.com" target="_blank" rel="noreferrer" className="hover:text-amber-600 transition">
+                            <FaFacebook />
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-amber-600 transition">
+                            <FaInstagram />
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-amber-600 transition">
+                            <FaLinkedin />
+                        </a>
                     </div>
                 </nav>
 
 
-                <nav className="flex flex-col items-center md:items-start gap-2">
+                <nav className="flex flex-col items-center gap-2">
                     <h6 className="footer-title text-slate-800 font-bold mb-2">Legal</h6>
 
                     <Link
@@ -54,6 +60,7 @@ export default function Footer() {
                     </Link>
                 </nav>
             </div>
+
 
             <div className="border-t border-slate-200 bg-white/30 py-4 text-center">
                 <p className="text-sm text-slate-500">

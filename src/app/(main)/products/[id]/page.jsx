@@ -2,6 +2,9 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MdOutlineMail, MdArrowBack } from "react-icons/md";
+import { FaStar } from "react-icons/fa";
+import toast from "react-hot-toast";
+import AddToCartButton from "@/app/component/AddToCartButton";
 
 
 
@@ -9,12 +12,9 @@ async function getProductByID(id) {
     try {
         const res = await fetch(
             `https://suncart-product-json-data.onrender.com/products/${id}`,
-            { cache: "no-store" }
+
         );
 
-        if (!res.ok) {
-            return null;
-        }
 
         const data = await res.json();
         return data;
@@ -25,8 +25,8 @@ async function getProductByID(id) {
 }
 
 export default async function ProductDetails({ params }) {
-    const resolvedParams = await params;
-    const { id } = resolvedParams;
+    const resParams = await params;
+    const { id } = resParams;
 
     const product = await getProductByID(id);
 
@@ -37,15 +37,14 @@ export default async function ProductDetails({ params }) {
             <div className="bg-[#FFFBEB] min-h-screen">
                 <div className="min-h-[65vh] flex flex-col items-center justify-center p-6">
                     <div className="max-w-md text-center bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
-                        <span className="text-5xl select-none">🏖️</span>
                         <h2 className="text-2xl font-black text-slate-800 mt-4 leading-tight">
                             Product Not Found
                         </h2>
                         <p className="text-sm text-slate-500 mt-2 leading-relaxed">
                             We couldn't locate the item you are looking for. It might have sold out or been removed from the summer collection.
                         </p>
-                        <Link href="/products" className="btn btn-neutral btn-md mt-6 rounded-xl font-bold px-6">
-                            Back to Products
+                        <Link href="/allproducts" className="btn  bg-purple-950 mt-2 text-white">
+                            Back to All Products
                         </Link>
                     </div>
                 </div></div>
@@ -57,14 +56,14 @@ export default async function ProductDetails({ params }) {
             <div className="max-w-6xl mx-auto p-4 sm:p-6 md:p-10 min-h-screen">
 
                 <div className="mb-6">
-                    <Link href="/products" className="btn btn-ghost btn-sm gap-2 text-slate-600 hover:text-amber-600 font-bold px-2">
+                    <Link href="/allproducts" className="btn btn-ghost btn-sm gap-2 text-slate-600 hover:text-amber-600 font-bold px-2">
                         <MdArrowBack className="w-5 h-5" />
                         Back to All Products
                     </Link>
                 </div>
 
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-14 items-center bg-white border border-slate-100 rounded-3xl p-5 sm:p-8 shadow-sm">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-14 items-center bg-purple-100 border border-slate-100 rounded-3xl p-5 sm:p-8 shadow-sm">
 
 
                     <div className="relative w-full h-80 sm:h-[450px] rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 select-none">
@@ -91,18 +90,16 @@ export default async function ProductDetails({ params }) {
                             </p>
                         </div>
 
-                        <p className="text-slate-600 leading-relaxed text-sm sm:text-base">
+                        <p className="text-[#100932] leading-relaxed text-xl">
                             {product.description}
                         </p>
 
                         <div className="flex items-center gap-6">
 
-                            <div className="flex items-center gap-1.5 bg-amber-50 border border-amber-100 px-3.5 py-1.5 rounded-xl select-none">
-                                <span className="text-amber-500 text-lg">⭐</span>
-                                <span className="font-extrabold text-slate-700 text-sm">
-                                    {product.rating}
-                                </span>
-                            </div>
+                            <span className="text-yellow-500 font-semibold flex items-center gap-1">
+                                <FaStar className="text-yellow-500" />
+                                {product.rating}
+                            </span>
 
 
                             <div className="flex items-center gap-2">
@@ -118,17 +115,12 @@ export default async function ProductDetails({ params }) {
 
                         <div className="flex flex-wrap items-center justify-between gap-4 mt-auto">
                             <div className="flex flex-col">
-                                <span className="text-xs font-bold text-slate-400 uppercase tracking-wide">Price</span>
-                                <p className="text-green-600 text-3xl sm:text-4xl font-black leading-none mt-1">
+                                <span className="text-xs font-bold text-slate-700 ">Price</span>
+                                <p className="text-green-600 text-3xl  font-bold mt-1">
                                     BDT {product.price}
                                 </p>
                             </div>
-                            <button
-                                disabled={product.stock <= 0}
-                                className="btn bg-orange-600 hover:bg-orange-700 disabled:bg-slate-200 disabled:text-slate-400 text-white font-extrabold px-8 sm:px-12 rounded-2xl border-none transition h-14 min-h-[3.5rem] shadow-lg shadow-orange-600/10 flex-1 sm:flex-initial uppercase tracking-wide text-sm"
-                            >
-                                {product.stock > 0 ? "Add to Cart" : "Sold Out"}
-                            </button>
+                            <AddToCartButton product={product} />
                         </div>
                     </div>
 

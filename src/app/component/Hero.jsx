@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import "animate.css";
+import { FaFire } from "react-icons/fa";
 
 export default function Hero() {
     return (
@@ -10,12 +11,12 @@ export default function Hero() {
             <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-12">
 
 
-                <div className="flex justify-center md:justify-start">
+                <div className="flex justify-center md:justify-start animate__animated animate__fadeInLeft">
 
                     <div className="bg-white shadow-lg rounded-3xl px-8 py-8 border border-amber-100 w-fit text-center md:text-left">
 
                         <div className="flex items-center justify-center md:justify-start gap-2 text-amber-600 font-semibold text-lg mb-3">
-                            <span>🔥</span>
+                            <span><FaFire /> </span>
                             <span>Hot Deals</span>
                         </div>
 
@@ -36,7 +37,7 @@ export default function Hero() {
                 </div>
 
 
-                <div className="flex flex-col gap-6 text-center md:text-left">
+                <div className="flex flex-col gap-6 text-center md:text-left animate__animated animate__fadeInRight">
 
                     <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-800">
                         Welcome to{" "}
